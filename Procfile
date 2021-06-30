@@ -1,0 +1,1 @@
+web: python manage.py collectstatic --no-input; gunicorn ghs_med.wsgi --log-file - --log-level debug
