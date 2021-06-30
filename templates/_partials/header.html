@@ -1,0 +1,88 @@
+{% load static %}
+
+<header class="header">
+    <nav class="navbar navbar-expand-lg header-nav">
+        <div class="navbar-header">
+            <a id="mobile_btn" href="javascript:void(0);">
+                <span class="bar-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </a>
+            <a href="/" class="navbar-brand logo">
+                <img src="{% static 'img/logo_ghs1.png' %}" class="img-fluid" style="height: 60px; width: 70%" alt="Logo">
+            </a>
+        </div>
+        <div class="main-menu-wrapper">
+            <div class="menu-header">
+                <a href="/" class="menu-logo">
+                    <img src="{% static 'img/logo.png' %}" class="img-fluid" alt="Logo">
+                </a>
+                <a id="menu_close" class="menu-close" href="javascript:void(0);">
+                    <i class="fas fa-times"></i>
+                </a>
+            </div>
+            <ul class="main-nav">
+                <li class="active">
+                    <a href="/">Accueil</a>
+                </li>
+                <li>
+                    <a href="{% url 'about' %}">A Propos</a>
+                </li>
+                <li>
+                    <a href="{% url 'contact' %}">Contact</a>
+                </li>
+                <li>
+                    <a href="{% url 'faq' %}">Faqs</a>
+                </li>
+            </ul>
+        </div>
+        <ul class="nav header-navbar-rht">
+            <li class="nav-item contact-item">
+                <div class="header-contact-img">
+                    <i class="far fa-hospital"></i>
+                </div>
+                <div class="header-contact-detail">
+                    <p class="contact-header">Contact</p>
+                    <p class="contact-info-header"> +225 48566846</p>
+                </div>
+            </li>
+            {% if user.is_authenticated %}
+                <!-- User Menu -->
+                <li class="nav-item dropdown has-arrow logged-item">
+                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                    <span class="user-img">
+                        {% if user.patient.image %}
+                            <img class="rounded-circle" src="{{ user.patient.image.url }}" width="31" alt="{{ user.username}}">
+                        {% endif %}
+                    </span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <div class="user-header">
+                        <div class="avatar avatar-sm">
+                            {% if user.patient.image %}
+                                <img class="rounded-circle" src="{{ user.patient.image.url }}" width="31" alt="{{ user.username}}">
+                            {% endif %}
+                        </div>
+                        <div class="user-text">
+                            <h6>
+                                {{ user.username}}
+                            </h6>
+                            <p class="text-muted mb-0">Patient</p>
+                        </div>
+                    </div>
+                    <a class="dropdown-item" href="{% url 'patient:dashboard' %}">Dashboard</a>
+{#                    <a class="dropdown-item" href="{% url 'patient:settings' %}">Profile</a>#}
+                    <a class="dropdown-item" href={% url 'logout' %}>Déconnexion</a>
+                </div>
+            </li>
+            <!-- /User Menu -->
+            {% else %}
+                <li class="nav-item">
+                <a class="nav-link header-login" href="{% url 'connexion' %}">Connexion </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>

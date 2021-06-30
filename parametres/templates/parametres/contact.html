@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load bootstrap4 %}
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% block title %}
+    Formulaire de Contact |
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="container">
+        <div class="comp-sec-wrapper">
+            <!-- Avatar -->
+            <section class="comp-section">
+                <div class="comp-header">
+                    <h3 class="comp-title">{{ titre}}</h3>
+                    <div class="line"></div>
+                </div>
+                <figure class="card shadow mx-auto" style="max-width: 800px; margin-bottom: 50px">
+                        <div class="col-md-12">
+                        <!-- Register Form -->
+                            <form method="post" enctype="multipart/form-data" style="margin-top: 15px; margin-bottom: 20px">
+                            {% csrf_token %}
+                                <div class="row form-row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>Nom</label>
+                                            {% render_field form.nom class="form-control" placeholder="Nom" %}
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>Contacts</label>
+                                              {% render_field form.telephone class="form-control" placeholder="Contacts" %}
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                            {% render_field form.email class="form-control" placeholder="Adresse électronique" %}
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>Message</label>
+                                            {% render_field form.message class="form-control" placeholder="Message" %}
+                                        </div>
+                                    </div>
+                            </div>
+                                <button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Envoyer</button>
+                            </form>
+                        <!-- /Register Form -->
+                    </div>
+                    </figure>
+            </section>
+            <!-- /Avatar -->
+        </div>
+    </div>
+</div>
+<!-- Clinic and Specialities -->
+{% endblock %}

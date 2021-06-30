@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load bootstrap4 %}
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% block title %}
+    Abonnement |
+{% endblock %}
+
+{% block content %}
+   <div class="content" style="transform: none">
+      <div class="container-fluid" style="transform: none">
+          <div class="row" style="transform: none">
+             <div class="col-md-12">
+                <h1 class="text-info text-center" style="font-weight: bold; letter-spacing: 3px; text-decoration: underline;">NOS FORMULES D'ABONNEMENT</h1>
+                 <div class="row row-grid">
+                     {% for abbonement in abbonements %}
+                        <div class="col-md-4">
+                            <figure class="card shadow mx-auto" style="max-width: 700px; margin-top: 25px">
+                                <div class="p-3 p-md-5">
+                                <header class="mb-4 text-center">
+                                     <h4 class="title" style="letter-spacing: 2.5px">{{ abbonement.libelle }}</h4>
+                                    <p class="text-danger" style="font-size: 14px">{{ abbonement.consultation }} Consultations</p>
+                                </header>
+                                <p class="text-white-50"></p>
+                                <div class="row text-muted mb-3 text-center">
+                                    <p class="text-muted">{{ abbonement.details }}</p>
+                                </div>
+                                <p class="text-center my-3">
+                                    <b>{{ abbonement.prix }} F cfa</b>
+                                </p>
+                                <p class="text-center">
+                                    <a href="#" class="btn btn-success btn-lg text-uppercase" data-toggle="modal" data-target="#payement">
+                                        <i class="far fa-money"></i> Régler
+                                    </a>
+                                </p>
+                            </div>
+                            </figure>
+                        </div>
+                     {% endfor %}
+                 </div>
+             </div>
+          </div>
+      </div>
+   </div>
+    {% include 'js.html' %}
+   <div class="modal fade custom-modal" id="#">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Payer Abonnement</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="col-sm-8 offset-2">
+                                <div class="form-group">
+                                    <label class="">Payer Abonnement</label>
+                                    <h4 class="text-info text-center" style="font-weight: bold; letter-spacing: 3px">Payer Abonnement </h4>
+{#                                    <h1 class="text-info text-center" style="font-weight: bold; letter-spacing: 3px">Payer</h1>#}
+{#                                    {% render_field paymentForm.abonnement class="form-control" placeholder="Abonnement" %}#}
+                                </div>
+                                <div class="text-center">
+                                    <a href="#" class="btn btn-outline-success btn-lg shadow-sm text-uppercase"> Mobile Money  </a>
+                                     <br><br>
+                                    <a href="#" class="btn btn-outline-success btn-lg shadow-sm text-uppercase"> Paypal  </a>
+                                     <br><br>
+                                    <a href="#" class="btn btn-outline-success btn-lg shadow-sm text-uppercase"> Strip  </a>
+                                </div>
+                                 <hr />
+                                 <p class="text-center text-muted"><i class="fa fa-lock"></i> Paiement Sécurisé  &nbsp; <img height="16" src="{% static 'img/payments.png' %}"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+   <div class="modal fade custom-modal" id="payement">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Appointment Details</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<ul class="info-details">
+							<li>
+								<div class="details-header">
+									<div class="row">
+										<div class="col-md-6">
+											<span class="title">#APT0001</span>
+											<span class="text">21 Oct 2019 10:00 AM</span>
+										</div>
+										<div class="col-md-6">
+											<div class="text-right">
+												<button type="button" class="btn bg-success-light btn-sm" id="topup_status">Completed</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<span class="title">Status:</span>
+								<span class="text">Completed</span>
+							</li>
+							<li>
+								<span class="title">Confirm Date:</span>
+								<span class="text">29 Jun 2019</span>
+							</li>
+							<li>
+								<span class="title">Paid Amount</span>
+								<span class="text">$450</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+{% endblock %}
+
+<!-- jQuery -->
+
+
+{#{% for abbonement in abbonements %}#}
+{#    <div class="col-4">#}
+{#        <figure class="card shadow mx-auto" style="max-width: 700px; margin-top: 25px">#}
+{#          <div class="p-3 p-md-5">#}
+{#            <header class="mb-4 text-center">#}
+{#                 <h4 class="title">{{ abbonement.libelle }}</h4>#}
+{#                <p class="text-muted">Last update: Aug. 2020</p>#}
+{#            </header>#}
+{#            <p class="text-white-50"></p>#}
+{#            <div class="row text-muted mb-3">#}
+{#                <div class="col-md">#}
+{#                    <ul class="list-check">#}
+{#                        <li>HTML/CSS/SASS files </li>#}
+{#                        <li>Javascript snippets </li>#}
+{#                        <li>Template samples</li>#}
+{##}
+{#                    </ul>#}
+{#                </div>#}
+{#                <div class="col-lg">#}
+{#                    <ul class="list-check">#}
+{##}
+{#                        <li>Icons (SVG, Fonticon)</li>#}
+{#                        <li>Sample images</li>#}
+{#                        <li>Responsive</li>#}
+{#                    </ul>#}
+{#                </div>#}
+{#                <div class="col-lg">#}
+{#                    <ul class="list-check">#}
+{#                        <li>50+ components</li>#}
+{#                        <li>Fonts (Roboto, InterUI) </li>#}
+{#                        <li>Support by author</li>#}
+{#                    </ul>#}
+{#                </div>#}
+{#            </div>   <!-- row.// -->#}
+{#            <div class="text-center">#}
+{##}
+{#                <a href="page-components.html" class="btn btn-outline-success btn-lg shadow-sm text-uppercase"> Demo view  </a>#}
+{##}
+{#                <a href="https://gumroad.com/l/bootstrap-ecommerce-uikit" target="_blank" class="btn btn-success  btn-lg shadow-sm text-uppercase"> Download all  </a>#}
+{##}
+{#            </div>#}
+{#            <p class="text-center my-3"> <b>Only $7</b>  &nbsp; <del class="text-danger">$20</del>#}
+{#            </p>#}
+{#            <p class="text-center text-muted"><i class="fa fa-lock"></i> Secure Checkout by Gumroad  &nbsp; <img height="16" src="assets/images/misc/payments.png"></p>#}
+{##}
+{#        </div>#}
+{#        </figure>#}
+{#    </div>#}
+{#{% endfor %}#}

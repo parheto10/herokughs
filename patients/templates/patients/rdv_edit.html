@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load bootstrap4 %}
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% block title %}
+    Rendez-Vous
+{% endblock %}
+{% block content %}
+<!-- Main Wrapper -->
+    <div class="main-wrapper">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-bar">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-md-12 col-12">
+                    <nav aria-label="breadcrumb" class="page-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">rdv</li>
+                        </ol>
+                    </nav>
+                    <h2 class="breadcrumb-title">RDV</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Breadcrumb -->
+
+    <!-- Page Content -->
+    <div class="content">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- Checkout Form -->
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {% bootstrap_form form %}
+                                <!-- Personal Information -->
+                                <div class="payment-widget">
+                                    <div class="submit-section mt-4">
+                                        <a class="btn btn-outline-danger" href="{% url 'docteurs:rdv_dashboard' %}">Retour</a>
+                                        <button type="submit" class="btn btn-primary submit-btn">Valider </button>
+                                    </div>
+                                    <!-- /Submit Section -->
+                                </div>
+                            </form>
+                            <!-- /Checkout Form -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /Page Content -->
+</div>
+
+<script>
+  $(function () {
+    $("#heure").datetimepicker({
+      format: 'H:i',
+    });
+    $("#date_rdv").datetimepicker({
+      format: 'd/m/Y',
+    });
+    $("#date").datetimepicker({
+      format: 'd/m/Y',
+    });
+  });
+</script>
+<script>
+    $(document).ready(function(){
+      var date=$('input[name="date"]'); //our date input has the name "date"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+      var options={
+        dateFormat: 'yy-mm-dd',
+      };
+      date.datepicker(options);
+    })
+</script>
+<!-- /Main Wrapper -->
+{% endblock %}

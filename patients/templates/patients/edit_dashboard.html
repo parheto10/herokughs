@@ -1,0 +1,269 @@
+{% load static %}
+{% load widget_tweaks %}
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="fr">
+	
+<!-- doccure/patient-dashboard.html  30 Nov 2019 04:12:16 GMT -->
+<head>
+		<meta charset="utf-8">
+		<title>Doccure</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+		
+		{% include 'css.html' %}
+		
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+			<script src="assets/js/html5shiv.min.js"></script>
+			<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+	
+	</head>
+	<body>
+
+		<!-- Main Wrapper -->
+		<div class="main-wrapper">
+            {% include '_partials/header.html' %}
+			<!-- Breadcrumb -->
+			<div class="breadcrumb-bar">
+				<div class="container-fluid">
+					<div class="row align-items-center">
+						<div class="col-md-12 col-12">
+							<h2 class="breadcrumb-title">Mon Compte</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Breadcrumb -->
+			
+			<!-- Page Content -->
+			<div class="content">
+				<div class="container-fluid">
+
+					<div class="row">
+						
+						<!-- Profile Sidebar -->
+						<div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
+							<div class="profile-sidebar">
+								<div class="widget-profile pro-widget-content">
+									<div class="profile-info-widget">
+										{% if instance.image %}
+										    <a href="#" class="booking-doc-img">
+                                                <img src="{{ instance.image.url }}" alt="User Image">
+                                            </a>
+										{% endif %}
+                                        <div class="patient-details">
+                                            <h5><i class="fas fa-birthday-cake"></i> {{ instance.dob }}, {{ age }} ans</h5>
+                                        </div>
+										<div class="profile-det-info">
+											<h3>
+                                                {{ instance.user.last_name}}
+                                                {{ instance.user.first_name}}
+                                            </h3>
+                                            <h3>
+                                                {% if instance.telephone2 %}
+                                                    <i class="fas fa-phone"></i> {{ instance.telephone1}} / {{ instance.telephone2 }}
+                                                {% else %}
+                                                    <i class="fas fa-phone"></i> {{ instance.telephone1}}
+                                                {% endif %}
+                                            </h3>
+											<div class="patient-details">
+												{% if instance.adresse %}
+												    <h5 class="mb-0"><i class="fas fa-map-marker-alt"></i>{{ instance.adresse }}</h5>
+												{% endif %}
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="dashboard-widget">
+									<nav class="dashboard-menu">
+										<ul>
+											<li>
+												<a href="{% url 'patient:dashboard' %}">
+													<i class="fas fa-columns"></i>
+													<span>Dashboard</span>
+												</a>
+											</li>
+											<li>
+												<a href="{% url 'patient:rdv' %}">
+													<i class="fas fa-bookmark"></i>
+													<span>Prendre Un Rdv</span>
+												</a>
+											</li>
+                                            <li>
+												<a href="{% url 'patient:abonnement' %}">
+													<i class="fas fa-money-check"></i>
+													<span>Mes Abonnements</span>
+												</a>
+											</li>
+                                            <li>
+												<a href="{% url 'patient:dashboard' %}">
+													<i class="fas fa-user-cog"></i>
+													<span>Paramètre</span>
+												</a>
+											</li>
+											<li>
+												<a href="{% url 'logout' %}">
+													<i class="fas fa-sign-out-alt"></i>
+													<span>Déconnexion</span>
+												</a>
+											</li>
+										</ul>
+									</nav>
+								</div>
+
+							</div>
+						</div>
+						<!-- / Profile Sidebar -->
+						
+						<div class="col-md-7 col-lg-8 col-xl-9">
+							<div class="card">
+								<div class="card-body">
+
+									<!-- Profile Settings Form -->
+									<form>
+										<div class="row form-row">
+											<div class="col-12 col-md-12">
+												<div class="form-group">
+													<div class="change-avatar">
+														<div class="profile-img">
+															{% if instance.image %}
+                                                                <img src="{{ instance.image.url }}" alt="User Image">
+															{% endif %}
+														</div>
+														<div class="upload-img">
+															<div class="change-photo-btn">
+																<span><i class="fa fa-upload"></i> Mofifier Photo</span>
+																{% render_field form.image type="file" class="form-control" placeholder="Contact 1" %}
+															</div>
+															<small class="form-text text-muted">Formats Acceptés JPG, GIF ou PNG. Taille Max 2MB</small>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-12 col-md-6">
+												<div class="form-group">
+													<label>Genre</label>
+													{% render_field form.genre class="form-control" placeholder="" %}
+												</div>
+											</div>
+											<div class="col-12 col-md-6">
+												<div class="form-group">
+													<label>Date de Naissance </label>
+													{% render_field form.dob type="date" class="form-control" %}
+												</div>
+											</div>
+											<div class="col-12 col-md-6">
+												<div class="form-group">
+													<label>Poids</label>
+													<div class="cal-icon">
+														{% render_field form.poids type="number" class="form-control" %}
+													</div>
+												</div>
+											</div>
+											<div class="col-12 col-md-6">
+												<div class="form-group">
+													<label>Groupe Sanguin</label>
+													{% render_field form.groupe_sanguin class="form-control" placeholder="" %}
+												</div>
+											</div>
+											<div class="col-12 col-md-6">
+												<div class="form-group">
+													<label>Contact 1</label>
+													{% render_field form.telephone1 class="form-control" placeholder="" %}
+												</div>
+											</div>
+											<div class="col-12 col-md-6">
+												<div class="form-group">
+													<label>Contact 2</label>
+													{% render_field form.telephone2 class="form-control" placeholder="" %}
+												</div>
+											</div>
+											<div class="col-12">
+												<div class="form-group">
+												<label>Addresse</label>
+													{% render_field form.adresse class="form-control" placeholder="" %}
+												</div>
+											</div>
+											<div class="col-12">
+												<div class="form-group">
+													<label>Antécédents Medicaux</label>
+													{% render_field form.details class="form-control" placeholder="" %}
+												</div>
+											</div>
+										</div>
+										<div class="submit-section">
+											<button type="submit" class="btn btn-primary submit-btn">Modifier</button>
+										</div>
+									</form>
+									<!-- /Profile Settings Form -->
+									
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>		
+			<!-- /Page Content -->
+   
+			<!-- Footer -->
+			{% include '_partials/footer.html' %}
+			<!-- /Footer -->
+		   
+		</div>
+		<!-- /Main Wrapper -->
+
+        <!-- Appointment Details Modal -->
+		<div class="modal fade custom-modal" id="appt_details">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Appointment Details</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<ul class="info-details">
+							<li>
+								<div class="details-header">
+									<div class="row">
+										<div class="col-md-6">
+											<span class="title">#APT0001</span>
+											<span class="text">21 Oct 2019 10:00 AM</span>
+										</div>
+										<div class="col-md-6">
+											<div class="text-right">
+												<button type="button" class="btn bg-success-light btn-sm" id="topup_status">Completed</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<span class="title">Status:</span>
+								<span class="text">Completed</span>
+							</li>
+							<li>
+								<span class="title">Confirm Date:</span>
+								<span class="text">29 Jun 2019</span>
+							</li>
+							<li>
+								<span class="title">Paid Amount</span>
+								<span class="text">$450</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	  
+		<!-- jQuery -->
+		{% include 'js.html' %}
+		
+	</body>
+
+<!-- doccure/patient-dashboard.html  30 Nov 2019 04:12:16 GMT -->
+</html>

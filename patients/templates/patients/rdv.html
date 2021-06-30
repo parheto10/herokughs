@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load bootstrap4 %}
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% block title %}
+    Rendez-Vous
+{% endblock %}
+{% block content %}
+<!-- Main Wrapper -->
+    <div class="main-wrapper">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-bar">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-md-12 col-12">
+                    <nav aria-label="breadcrumb" class="page-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">rdv</li>
+                        </ol>
+                    </nav>
+                    <h2 class="breadcrumb-title">RDV</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Breadcrumb -->
+
+    <!-- Page Content -->
+    <div class="content">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-8 col-lg-8">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <!-- Checkout Form -->
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {% bootstrap_form form %}
+                                <div class="payment-widget">
+                                    <!-- Terms Accept -->
+                                    <!-- Submit Section -->
+                                    <div class="submit-section mt-4">
+                                        <button type="submit" class="btn btn-primary submit-btn">Valider </button>
+                                    </div>
+                                    <!-- /Submit Section -->
+                                </div>
+                            </form>
+                            <!-- /Checkout Form -->
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-4 col-lg-4 theiaStickySidebar">
+
+                    <!-- Booking Summary -->
+                    <div class="card booking-card">
+                        <div class="card-header">
+                            <h4 class="card-title">Mes Infos</h4>
+                        </div>
+                            <div class="card-body">
+                                {% if patient %}
+                            <!-- Booking Doctor Info -->
+                                <div class="booking-doc-info">
+                                    <a href="{% url 'patient:dashboard' %}" class="booking-doc-img">
+                                        {% if patient.image %}
+                                            <img src="{{ patient.image.url}}" alt="{{ patient.user.username }}">
+                                        {% endif %}
+                                    </a>
+                                    <div class="booking-info">
+                                        <h4><a href="{% url 'patient:dashboard' %}">{{ patient.user.first_name}} {{ patient.user.last_name }}</a></h4>
+                                        <div class="clinic-details">
+                                            {% if patient.adresse %}
+                                                <p class="doc-location"><i class="fas fa-map-marker-alt"></i> {{ patient.adresse }}</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                <!-- Booking Doctor Info -->
+
+                                {% if paiement %}
+                                    <div class="booking-summary">
+                                    <div class="booking-item-wrap">
+                                        <div class="booking-total">
+                                            <ul class="booking-fee">
+                                                <li>Nbre Consultation <span>{{ paiement.patient.nb_consultation }}</span></li>
+                                            </ul>
+                                            <ul class="booking-total-list">
+                                                <li>
+                                                    <span>Forfait Souscrit</span>
+                                                    <span class="total-cost">{{ paiement.abonnement.prix }}</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+
+                    </div>
+                    <!-- /Booking Summary -->
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /Page Content -->
+</div>
+
+<script>
+    $('#id_date_rdv').datetimepicker({
+        datepicker: true,
+        timepicker:true,
+        format : 'Y-m-d',
+        value:'2020-11-19',
+        week: true
+    });
+</script>
+
+{#<script>#}
+{#  $(function () {#}
+{#    $("#heure").datetimepicker({#}
+{#      format: 'H:i',#}
+{#    });#}
+{#    $("#date_rdv").datetimepicker({#}
+{#      format: 'd/m/Y',#}
+{#    });#}
+{#    $("#date").datetimepicker({#}
+{#      format: 'd/m/Y',#}
+{#    });#}
+{#  });#}
+{#</script>#}
+{#<script>#}
+{#    $(document).ready(function(){#}
+{#      var date=$('input[name="date"]'); //our date input has the name "date"#}
+{#      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";#}
+{#      var options={#}
+{#        dateFormat: 'yy-mm-dd',#}
+{#      };#}
+{#      date.datepicker(options);#}
+{#    })#}
+{#</script>#}
+<!-- /Main Wrapper -->
+{% endblock %}

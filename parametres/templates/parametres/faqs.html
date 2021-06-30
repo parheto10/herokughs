@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="content">
+    <div class="container">
+        <div class="comp-sec-wrapper">
+            <!-- Avatar -->
+            <section class="comp-section">
+                <div class="comp-header">
+                    <h3 class="comp-title">FOIRE AUX QUESTIONS</h3>
+                    <div class="line"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="accordion">
+                          <div class="row">
+                              {% for faq in faqs %}
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-header" id="heading{{ faq.id }}">
+                                          <h5 class="mb-0">
+                                            <button style="font-weight: bold" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse{{ faq.id }}" aria-expanded="false" aria-controls="collapse{{ faq.id }}">
+                                              {{ faq.question }}
+                                            </button>
+                                          </h5>
+                                        </div>
+                                        <div id="collapse{{ faq.id }}" class="collapse" aria-labelledby="heading{{ faq.id }}" data-parent="#accordion">
+                                          <div class="card-body">
+                                              {{ faq.reponses }}
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              {% endfor %}
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- /Avatar -->
+        </div>
+    </div>
+</div>
+<!-- Clinic and Specialities -->
+{% endblock %}

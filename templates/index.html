@@ -1,0 +1,207 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block custom_css %}
+<style>
+.col-lg-6.attendance_div_red {
+    padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background: #28a745;
+    border: 10px solid white;
+    text-align: center;
+    color: #fff;
+    border-radius: 30px;
+    box-shadow: 1px 1px 1px grey;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.col-lg-6.attendance_div_green {
+    padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background: rgb(255, 165, 0);
+    border: 10px solid white;
+    text-align: center;
+    color: #fff;
+    border-radius: 30px;
+    box-shadow: 1px 1px 1px grey;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+    <!-- Home Banner -->
+        {% include '_partials/banner.html' %}
+			<!-- /Home Banner -->
+        <!-- Clinic and Specialities -->
+			<section class="section section-specialities">
+                 <div class="col-md-4 offset-4 text-center text-uppercase" style="font-weight: bold; letter-spacing: .2em">
+                     {% if messages %}
+                        {% for message in messages %}
+                            {% if message.tags == 'success' %}
+                                <div class="alert alert-success">{{ message }}</div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                 </div>
+				<div class="container-fluid">
+					<div class="section-header text-center">
+                        <h1 style="letter-spacing: 2.5px; font-weight: bold; margin-top: -35px">
+                            Bienvenus sur GLOBAL HEALTH SOLUTION - (GHS)
+                            <p style="color: #000000; font-size: 22px">Votre Solution de Santé à moindre coût pour l'Afrique, conçue par des Africains</p>
+                        </h1>
+						<p class="sub-title" style="color: #000000; font-size: 18px">Comment Prendre un RDV ?</p>
+					</div>
+{#					<div class="row col-lg-10 offset-1" style="margin-top: -30px; background: #95b2d0">#}
+					{% if not user.is_authenticated %}
+                        <div class="row col-lg-10 offset-1" style="margin-top: -30px; background: url({% static 'img/search-bg.png' %}) no-repeat bottom center;">
+                        <div class="card-body justify-content-center">
+                            <div class="row ">
+                                <div class="col-lg-6 attendance_div_green">
+                                    <a href="{% url 'connexion' %}" class="btn btn-lg" style="color: #FFFFFF; border-radius: 30px; font-weight: bold; letter-spacing: 1.5px">Déjà Abonné</a>
+                                </div>
+                                <div class="col-lg-6 attendance_div_red">
+                                    <a href="{% url 'patient:inscription' %}" class="btn btn-lg" style="color: #FFFFFF; border-radius: 30px; font-weight: bold; letter-spacing: 2px">JE PRENDS RDV</a>
+                                </div>
+                            </div>
+				        </div>
+                </div>
+					{% else %}
+                        <div class="row col-lg-10 offset-1" style="margin-top: -30px; background: url({% static 'img/search-bg.png' %}) no-repeat bottom center;">
+                        <div class="card-body justify-content-center">
+                            <div class="row ">
+                                <div class="col-lg-6 attendance_div_green">
+                                    <a href="{% url 'patient:dashboard' %}" class="btn btn-lg" style="color: #FFFFFF; border-radius: 30px; font-weight: bold; letter-spacing: 1.5px">Mon Compte</a>
+                                </div>
+                                <div class="col-lg-6 attendance_div_red">
+                                    <a href="{% url 'patient:rdv' %}" class="btn btn-lg" style="color: #FFFFFF; border-radius: 30px; font-weight: bold; letter-spacing: 2px">RDV</a>
+                                </div>
+                            </div>
+				        </div>
+                </div>
+                    {% endif %}
+            </section>
+        <!-- Clinic and Specialities -->
+        <!-- About Section -->
+            <section class="section section-doctor">
+        <div class="container-fluid">
+           <div class="row text-center" style="margin-top: -30px; margin-bottom: -50px">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">qu'est-ce que GHS ?</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>
+                                Pour les professionnels de santé, GHS-SANTE est un service de gestion en ligne des consultations.
+                                L'objectif de son service est de permettre aux professionnels de santé d'améliorer l'efficacité de leur organisation,
+                                la communication avec leur patient et la coopération avec leurs confrères.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">pourquoi utiliser GHS ?</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>
+                                Pour les professionnels de santé, GHS-SANTE est un service de gestion en ligne des consultations.
+                                L'objectif de son service est de permettre aux professionnels de santé d'améliorer l'efficacité de leur organisation,
+                                la communication avec leur patient et la coopération avec leurs confrères.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Mot des Concepteurs</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>
+                                Pour les professionnels de santé, GHS-SANTE est un service de gestion en ligne des consultations.
+                                L'objectif de son service est de permettre aux professionnels de santé d'améliorer l'efficacité de leur organisation,
+                                la communication avec leur patient et la coopération avec leurs confrères.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+           </div>
+        </div>
+        </section>
+        <!-- About Section -->
+        <!-- Clinic and Specialities -->
+{#            <section class="section section-specialities">#}
+{#            <div class="container-fluid">#}
+{#                <div class="section-header text-center">#}
+{#                    <h2>Spécialités GHS</h2>#}
+{#                    <p class="sub-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>#}
+{#                </div>#}
+{#                <div class="row justify-content-center">#}
+{#                    <div class="col-md-9">#}
+{#                        <!-- Slider -->#}
+{#                        <div class="specialities-slider slider">#}
+{##}
+{#                            <!-- Slider Item -->#}
+{#                            <div class="speicality-item text-center">#}
+{#                                <div class="speicality-img">#}
+{#                                    <img src="{% static 'img/specialities/specialities-01.png' %}" class="img-fluid" alt="Speciality">#}
+{#                                    <span><i class="fa fa-circle" aria-hidden="true"></i></span>#}
+{#                                </div>#}
+{#                                <p>Urology</p>#}
+{#                            </div>#}
+{#                            <!-- /Slider Item -->#}
+{##}
+{#                            <!-- Slider Item -->#}
+{#                            <div class="speicality-item text-center">#}
+{#                                <div class="speicality-img">#}
+{#                                    <img src="{% static 'img/specialities/specialities-02.png' %}" class="img-fluid" alt="Speciality">#}
+{#                                    <span><i class="fa fa-circle" aria-hidden="true"></i></span>#}
+{#                                </div>#}
+{#                                <p>Neurology</p>#}
+{#                            </div>#}
+{#                            <!-- /Slider Item -->#}
+{##}
+{#                            <!-- Slider Item -->#}
+{#                            <div class="speicality-item text-center">#}
+{#                                <div class="speicality-img">#}
+{#                                    <img src="{% static 'img/specialities/specialities-03.png' %}" class="img-fluid" alt="Speciality">#}
+{#                                    <span><i class="fa fa-circle" aria-hidden="true"></i></span>#}
+{#                                </div>#}
+{#                                <p>Orthopedic</p>#}
+{#                            </div>#}
+{#                            <!-- /Slider Item -->#}
+{##}
+{#                            <!-- Slider Item -->#}
+{#                            <div class="speicality-item text-center">#}
+{#                                <div class="speicality-img">#}
+{#                                    <img src="{% static 'img/specialities/specialities-04.png' %}" class="img-fluid" alt="Speciality">#}
+{#                                    <span><i class="fa fa-circle" aria-hidden="true"></i></span>#}
+{#                                </div>#}
+{#                                <p>Cardiologist</p>#}
+{#                            </div>#}
+{#                            <!-- /Slider Item -->#}
+{##}
+{#                            <!-- Slider Item -->#}
+{#                            <div class="speicality-item text-center">#}
+{#                                <div class="speicality-img">#}
+{#                                    <img src="{% static 'img/specialities/specialities-05.png' %}" class="img-fluid" alt="Speciality">#}
+{#                                    <span><i class="fa fa-circle" aria-hidden="true"></i></span>#}
+{#                                </div>#}
+{#                                <p>Dentist</p>#}
+{#                            </div>#}
+{#                            <!-- /Slider Item -->#}
+{##}
+{#                        </div>#}
+{#                        <!-- /Slider -->#}
+{##}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </section>#}
+        <!-- Clinic and Specialities -->
+{% endblock %}

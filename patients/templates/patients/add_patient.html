@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load bootstrap4 %}
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% block title %}
+    Inscription |
+{% endblock %}
+
+{% block content %}
+    <div class="main-wrapper">
+			<!-- Page Content -->
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12">
+							<!-- Register Content -->
+							<div class="account-content">
+								<div class="row align-items-center justify-content-center">
+									<div class="col-md-7 col-lg-4 login-left">
+                                        <div class="col-md-12 text-center text-uppercase" style="font-weight: bold; letter-spacing: .2em">
+                                             {% if messages %}
+                                                {% for message in messages %}
+                                                    {% if message.tags == 'error' %}
+                                                        <div class="alert alert-danger">{{ message }}</div>
+                                                    {% endif %}
+                                                    {% if message.tags == 'success' %}
+                                                        <div class="alert alert-success">{{ message }}</div>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                         </div>
+										<img src="{% static 'img/login-banner.png' %}" class="img-fluid" alt="Doccure Register">
+									</div>
+									<div class="col-md-12 col-lg-8 login-right">
+										<div class="login-header">
+											<h3>Formulaire d'Inscription <a class="forgot-link" href="{% url 'connexion' %}">Connexion</a></h3>
+										</div>
+										<!-- Register Form -->
+										<form method="post" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="row form-row">
+                                                    <div class="col-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <div class="change-avatar">
+                                                            <div class="upload-img">
+                                                                <div class="form-group">
+                                                                    <span><i class="fa fa-upload"></i> Image</span><br>
+                                                                    {% render_field patientForm.image type="file" class="form-control" placeholder="Nom" accept="image/*" class="form-control-file" %}
+                                                                </div>
+                                                                <small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Nom</label>
+                                                            {% render_field userForm.last_name class="form-control" placeholder="Nom" %}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Prénoms</label>
+                                                              {% render_field userForm.first_name class="form-control" placeholder="Prénom" %}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Nom d’utilisateur</label>
+                                                            {% render_field userForm.username class="form-control" placeholder="Nom d’utilisateur" %}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Adresse électronique</label>
+                                                            {% render_field userForm.email class="form-control" placeholder="Adresse électronique" %}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Mot de Passe</label>
+{#                                                            <input type="password" name="password" autocomplete="new-password" class="form-control" placeholder="Mot de passe" required id="password">#}
+                                                            {% render_field userForm.password type="password" class="form-control" placeholder="Mot de passe" %}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group"><label>GENRE</label>
+                                                              {% render_field patientForm.genre class="form-control" %}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Date de Naissance</label>
+                                                            {% render_field patientForm.dob class="form-control datetimepicker" placeholder="Date de Naissance" %}
+{#                                                            <input type="date" name="dob" class="form-control" placeholder="Date de Naissance" title="" required id="dob">#}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group"><label>Contact1</label>
+                                                            {% render_field patientForm.telephone1 class="form-control" placeholder="Contact" %}
+{#                                                            <input type="tel" name="contact1" maxlength="128" class="form-control" placeholder="Contact1" title="+22545485648" required id="contact1">#}
+                                                            <small class="form-text text-muted">45495560</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group"><label>GROUPE SANGUIN</label>
+                                                            {% render_field patientForm.groupe_sanguin class="form-control" %}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Poids(KG)</label>
+                                                            {% render_field patientForm.poids class="form-control" placeholder="Poids" %}
+{#                                                            <input type="number" name="poids" step="0.1" class="form-control" placeholder="Poids" title="" required id="id_poids">#}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label>Antécédents Médicaux</label>
+                                                            {% render_field patientForm.details class="form-control" placeholder="Historique Médical" cols="40" rows="5" %}
+{#                                                            <textarea name="details" cols="40" rows="10" class="form-control" placeholder="Historique Médical" title="" required id="details"></textarea>#}
+                                                        </div>
+                                                    </div>
+                                            </div>
+											<button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Inscription</button>
+										</form>
+										<!-- /Register Form -->
+
+									</div>
+								</div>
+							</div>
+							<!-- /Register Content -->
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+			<!-- /Page Content -->
+		</div>
+        <script>
+        {#$('.next_date').datepicker({ dateFormat: 'dd-mm-yy'});#}
+            $('#id_dob').datepicker({
+                datepicker: true,
+                timepicker:true,
+                format : 'Y-m-d',
+                value:'2020-11-19',
+                week: true
+            }).datepicker("setDate", new Date());
+        </script>
+{% endblock %}

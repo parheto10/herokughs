@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block custom_css %}
+<style>
+.col-lg-6.attendance_div_red {
+    padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background: #28a745;
+    border: 10px solid white;
+    text-align: center;
+    color: #fff;
+    border-radius: 30px;
+    box-shadow: 1px 1px 1px grey;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.col-lg-6.attendance_div_green {
+    padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background: rgb(255, 165, 0);
+    border: 10px solid white;
+    text-align: center;
+    color: #fff;
+    border-radius: 30px;
+    box-shadow: 1px 1px 1px grey;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+    <!-- About Section -->
+    <section class="section section-doctor">
+    <div class="container-fluid">
+       <div class="row" style="margin-top: -30px; margin-bottom: -50px">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">qu'est-ce que GHS ?</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            Pour les professionnels de santé, GHS-SANTE est un service de gestion en ligne des consultations.
+                            L'objectif de son service est de permettre aux professionnels de santé d'améliorer l'efficacité de leur organisation,
+                            la communication avec leur patient et la coopération avec leurs confrères.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">pourquoi utiliser GHS ?</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            Pour les professionnels de santé, GHS-SANTE est un service de gestion en ligne des consultations.
+                            L'objectif de son service est de permettre aux professionnels de santé d'améliorer l'efficacité de leur organisation,
+                            la communication avec leur patient et la coopération avec leurs confrères.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Mot des Concepteurs</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            Pour les professionnels de santé, GHS-SANTE est un service de gestion en ligne des consultations.
+                            L'objectif de son service est de permettre aux professionnels de santé d'améliorer l'efficacité de leur organisation,
+                            la communication avec leur patient et la coopération avec leurs confrères.
+                        </p>
+                    </div>
+                </div>
+            </div>
+       </div>
+    </div>
+    </section>
+    <!-- About Section -->
+
+    <!-- Clinic and Specialities -->
+     <section class="section section-specialities" style="margin-top: -30px; margin-bottom: -50px">
+        <div class="container-fluid">
+            <div class="section-header text-center">
+                <h2>Spécialités GHS</h2>
+                <p class="sub-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-9">
+                    <!-- Slider -->
+                    <div class="specialities-slider slider">
+
+                        <!-- Slider Item -->
+                        <div class="speicality-item text-center">
+                            <div class="speicality-img">
+                                <img src="{% static 'img/specialities/specialities-01.png' %}" class="img-fluid" alt="Speciality">
+                                <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                            </div>
+                            <p>Urology</p>
+                        </div>
+                        <!-- /Slider Item -->
+
+                        <!-- Slider Item -->
+                        <div class="speicality-item text-center">
+                            <div class="speicality-img">
+                                <img src="{% static 'img/specialities/specialities-02.png' %}" class="img-fluid" alt="Speciality">
+                                <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                            </div>
+                            <p>Neurology</p>
+                        </div>
+                        <!-- /Slider Item -->
+
+                        <!-- Slider Item -->
+                        <div class="speicality-item text-center">
+                            <div class="speicality-img">
+                                <img src="{% static 'img/specialities/specialities-03.png' %}" class="img-fluid" alt="Speciality">
+                                <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                            </div>
+                            <p>Orthopedic</p>
+                        </div>
+                        <!-- /Slider Item -->
+
+                        <!-- Slider Item -->
+                        <div class="speicality-item text-center">
+                            <div class="speicality-img">
+                                <img src="{% static 'img/specialities/specialities-04.png' %}" class="img-fluid" alt="Speciality">
+                                <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                            </div>
+                            <p>Cardiologist</p>
+                        </div>
+                        <!-- /Slider Item -->
+
+                        <!-- Slider Item -->
+                        <div class="speicality-item text-center">
+                            <div class="speicality-img">
+                                <img src="{% static 'img/specialities/specialities-05.png' %}" class="img-fluid" alt="Speciality">
+                                <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                            </div>
+                            <p>Dentist</p>
+                        </div>
+                        <!-- /Slider Item -->
+
+                    </div>
+                    <!-- /Slider -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Clinic and Specialities -->
+
+    <!-- Availabe Features -->
+    <section class="section section-doctor" style="margin-top: -30px; margin-bottom: -50px">
+        <div class="container-fluid">
+           <div class="row">
+                <div class="col-md-5 features-img">
+                    <img src="{% static 'img/features/feature.png' %}" class="img-fluid" alt="Feature">
+                </div>
+                <div class="col-md-7">
+                    <div class="section-header">
+                        <h2 class="mt-2">Services disponibles dans nos centres</h2>
+                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. </p>
+                    </div>
+                    <div class="features-slider slider">
+                        <!-- Slider Item -->
+                        <div class="feature-item text-center">
+                            <img src="{% static 'img/features/feature-01.jpg' %}" class="img-fluid" alt="Feature">
+                            <p>Patient Ward</p>
+                        </div>
+                        <!-- /Slider Item -->
+
+                        <!-- Slider Item -->
+                        <div class="feature-item text-center">
+                            <img src="{% static 'img/features/feature-02.jpg' %}" class="img-fluid" alt="Feature">
+                            <p>Test Room</p>
+                        </div>
+                        <!-- /Slider Item -->
+
+                        <!-- Slider Item -->
+                        <div class="feature-item text-center">
+                            <img src="{% static 'img/features/feature-03.jpg' %}" class="img-fluid" alt="Feature">
+                            <p>ICU</p>
+                        </div>
+                        <!-- /Slider Item -->
+
+                        <!-- Slider Item -->
+                        <div class="feature-item text-center">
+                            <img src="{% static 'img/features/feature-04.jpg' %}" class="img-fluid" alt="Feature">
+                            <p>Laboratory</p>
+                        </div>
+                        <!-- /Slider Item -->
+
+                        <!-- Slider Item -->
+                        <div class="feature-item text-center">
+                            <img src="{% static 'img/features/feature-05.jpg' %}" class="img-fluid" alt="Feature">
+                            <p>Operation</p>
+                        </div>
+                        <!-- /Slider Item -->
+
+                        <!-- Slider Item -->
+                        <div class="feature-item text-center">
+                            <img src="{% static 'img/features/feature-06.jpg' %}" class="img-fluid" alt="Feature">
+                            <p>Medical</p>
+                        </div>
+                        <!-- /Slider Item -->
+                    </div>
+                </div>
+           </div>
+        </div>
+    </section>
+    <!-- Availabe Features -->
+{% endblock %}
