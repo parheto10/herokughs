@@ -25,7 +25,7 @@ SECRET_KEY = '94)b(3zk2^1jq=mn(-i9==kvv^=%)s)%yik2nopr!+7dhh856)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["med-ghs.herokuapp.com/"]
 
 SEND_BROKEN_LINK_EMAILS = True
 ADMINS = (
@@ -69,6 +69,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
